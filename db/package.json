@@ -1,0 +1,11 @@
+{
+  "name": "contracts-api-db",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.15.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.505.0"
+  },
+  "main": "index.js"
+}
