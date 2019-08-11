@@ -8,10 +8,23 @@
   "license": "MIT",
   "description": "An API to handle contracts from home equity loans.",
   "repository": "github:erickm93/contracts-api",
+  "engines": {
+    "node": "10.15.0"
+  },
   "dependencies": {
-    "claudia-api-builder": "^4.1.2"
+    "aws-sdk": "^2.505.0",
+    "claudia-api-builder": "^4.1.2",
+    "contracts-api-db": "file:db"
   },
   "devDependencies": {
-    "eslint": "^6.1.0"
+    "@shelf/jest-dynamodb": "^1.4.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-jest": "^22.14.1",
+    "eslint-plugin-node": "^9.1.0",
+    "jest": "^24.8.0"
+  },
+  "scripts": {
+    "deploy": "AWS_PROFILE=claudiajs claudia create --version dev --region sa-east-1 --api-module api",
+    "test": "jest"
   }
 }
