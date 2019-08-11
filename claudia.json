@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "contracts-api-executor",
+    "name": "contracts-api",
+    "region": "sa-east-1"
+  },
+  "api": {
+    "id": "479p120d33",
+    "module": "api"
+  }
+}
