@@ -7,7 +7,7 @@ module.exports = (request) => {
   const { body } = request;
   const userBody = {
     firstName: body.firstName,
-    lastLame: body.lastName,
+    lastName: body.lastName,
     cpf: body.cpf,
     email: body.email,
     montlyIncome: body.montlyIncome,
