@@ -14,7 +14,8 @@
   "dependencies": {
     "aws-sdk": "^2.505.0",
     "claudia-api-builder": "^4.1.2",
-    "contracts-api-db": "file:db"
+    "contracts-api-db": "file:db",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@shelf/jest-dynamodb": "^1.4.0",
