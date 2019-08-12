@@ -19,5 +19,9 @@ module.exports = (attributes, repository) => {
     .then(() => ({
       success: true,
       resource: newUser
-    }));
+    }))
+    .catch((error) => {
+      console.log('error', error);
+      throw error;
+    });
 };
