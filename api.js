@@ -3,7 +3,7 @@
 const Api = require('claudia-api-builder');
 const api = new Api({ mergeVars: true });
 
-api.get('/', () => 'Contracts API');
+api.get('/', () => 'Welcome to the Contracts API!');
 
 const createUsersController = require('./src/controllers/create-users-controller');
 api.post('/users', createUsersController);
