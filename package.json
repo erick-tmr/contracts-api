@@ -25,7 +25,7 @@
     "jest": "^24.8.0"
   },
   "scripts": {
-    "deploy": "AWS_PROFILE=claudiajs claudia create --version dev --region sa-east-1 --api-module api",
+    "deploy": "AWS_PROFILE=claudiajs claudia update --region sa-east-1 --api-module api --set-env-from-json env.json",
     "test": "jest"
   }
 }
