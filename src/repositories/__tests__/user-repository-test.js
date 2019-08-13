@@ -17,7 +17,7 @@ describe('.create', () => {
       firstName: 'My',
       lastName: 'User',
       email: 'user@email.com'
-    }
+    };
     const user = userModel(userAttributes);
     
     const response = userRepository.create(user);
@@ -29,7 +29,7 @@ describe('.create', () => {
       firstName: 'My',
       lastName: 'User',
       email: 'user@email.com'
-    }
+    };
     const user = userModel(userAttributes);
     
     const response = userRepository.create(user);
