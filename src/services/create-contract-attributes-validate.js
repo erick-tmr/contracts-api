@@ -19,7 +19,7 @@ module.exports = (attributes) => {
           'reviewed'
         ];
 
-        if (possibleValues.indexOf(value) === -1) {
+        if (value && possibleValues.indexOf(value) === -1) {
           errors.push("status must be one of 'created', 'receiving_documents', 'reviewed'.")
         }
   

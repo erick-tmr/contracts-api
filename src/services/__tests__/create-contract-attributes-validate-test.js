@@ -81,6 +81,16 @@ describe('contract with amount not number', () => {
   })
 })
 
+describe('contract without status', () => {
+  it('does not return errors', () => {
+    // eslint-disable-next-line no-unused-vars
+    const { status, ...contractAttributes } = baseContractAttributes;
+
+    const validations = createContractAttributesValidate(contractAttributes);
+    expect(validations).toHaveLength(0);
+  })
+})
+
 describe('with all fields correct', () => {
   it('does not return errors', () => {
     const validations = createContractAttributesValidate(baseContractAttributes);
