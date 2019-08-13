@@ -8,6 +8,9 @@ api.get('/', () => 'Welcome to the Contracts API!');
 const createUsersController = require('./src/controllers/create-users-controller');
 api.post('/users', createUsersController);
 
+const createContractsController = require('./src/controllers/create-contracts-controller');
+api.post('/users/{userId}/contracts', createContractsController);
+
 api.get('/contracts', (request) => {
   return [
     {
