@@ -15,8 +15,6 @@ module.exports = (attributes, repository) => {
     };
   }
 
-  console.log('im here')
-
   return repository.create(newUser)
     .then(() => ({
       success: true,
