@@ -2,11 +2,11 @@
 
 const getAddress = (attributes) => {
   const addressAttributes = {
-    street: '',
-    zipCode: '',
-    city: '',
-    state: '',
-    country: ''
+    street: null,
+    zipCode: null,
+    city: null,
+    state: null,
+    country: null
   };
 
   if (!attributes.address) {
