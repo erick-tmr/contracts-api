@@ -20,7 +20,7 @@ const config = {
   ...(isTest && {
     accessKeyId: 'mYlOc4lK3y-test',
     endpoint: 'localhost:5000'
-  }),
+  })
 };
 AWS.config.update(config);
 
