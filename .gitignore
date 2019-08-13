@@ -90,5 +90,8 @@ typings/
 # AWS Credentials
 credentials.csv
 
+# env variables
+env.json
+
 # dev configs
 .vscode
