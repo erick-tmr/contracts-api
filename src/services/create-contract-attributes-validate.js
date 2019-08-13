@@ -41,7 +41,7 @@ module.exports = (attributes) => {
       approved: () => {
         const errors = [];
   
-        if (value !== false) {
+        if (value && value !== false) {
           errors.push('approved must be false.');
         }
   
