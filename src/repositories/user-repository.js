@@ -16,7 +16,7 @@ module.exports = {
       ...userModel
     };
     const { create } = baseRepositoryInstance;
-    console.log('###will create')
+
     return create({ item });
   }
 };
