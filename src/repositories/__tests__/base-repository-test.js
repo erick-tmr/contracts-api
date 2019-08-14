@@ -3,6 +3,35 @@
 const baseRepository = require('../base-repository');
 const { dynamoClient: { documentClient } } = require('contracts-api-db');
 
+const populateItem = async () => {
+  const item = {
+    pk: 'partition-key',
+    sk: 'sort-key',
+    name: 'My Item'
+  };
+  const docItem = {
+    TableName: 'test-tk_contracts_api',
+    Key: {
+      pk: item.pk,
+      sk: item.sk
+    }
+  };
+  const getResponse = await documentClient.get(docItem).promise();
+
+  if (!getResponse.Item) {
+    await documentClient.put({
+      TableName: 'test-tk_contracts_api',
+      Item: item
+    }).promise();
+  }
+
+  return { item, docItem };
+};
+
+const deleteItem = async (docItem) => {
+  await documentClient.delete(docItem).promise();
+};
+
 describe('without a tableName', () => {
   it('raises an exception', () => {
     expect(() => {
@@ -23,7 +52,7 @@ describe('.create', () => {
     };
 
     expect(() => {
-      create({ item });
+      create(item);
     }).toThrow(new Error('Primary Key is required, provide a pk and a sk.'));
   })
 
@@ -34,7 +63,7 @@ describe('.create', () => {
     };
 
     expect(() => {
-      create({ item });
+      create(item);
     }).toThrow(new Error('Primary Key is required, provide a pk and a sk.'));
   })
 
@@ -58,42 +87,55 @@ describe('.create', () => {
       await documentClient.delete(docItem).promise();
     }
 
-    await create({ item });
+    await create(item);
     const getCreatedResponse = await documentClient.get(docItem).promise();
     expect(getCreatedResponse.Item).toMatchObject(item);
 
-    await documentClient.delete(docItem).promise();
+    await deleteItem(docItem);
   })
 
   it('raises an exception with a repeated primary key', async () => {
     const { create } = baseRepository('test-tk_contracts_api');
-    const item = {
-      pk: 'partition-key',
-      sk: 'sort-key',
-      name: 'My Item'
-    };
-    const docItem = {
-      TableName: 'test-tk_contracts_api',
-      Key: {
-        pk: item.pk,
-        sk: item.sk
-      }
-    };
-    const getResponse = await documentClient.get(docItem).promise();
-
-    if (!getResponse.Item) {
-      await documentClient.put({
-        TableName: 'test-tk_contracts_api',
-        Item: item
-      }).promise();
-    }
+    const { item, docItem } = await populateItem();
 
     try {
-      await create({ item });
+      await create(item);
     } catch (error) {
       expect(error.code).toMatch('ConditionalCheckFailedException');
     }
 
-    await documentClient.delete(docItem).promise();
+    await deleteItem(docItem);
+  })
+})
+
+describe('.get', () => {
+  it('raises an exception without pk', async () => {
+    const { get } = baseRepository('test-tk_contracts_api');
+    const sk = 'my-sk';
+    const pk = undefined;
+
+    expect(() => {
+      get({ pk, sk });
+    }).toThrow(new Error('Primary Key is required, provide a pk and a sk.'));
+  })
+
+  it('raises an exception without sk', () => {
+    const { get } = baseRepository('test-tk_contracts_api');
+    const pk = 'my-pk';
+    const sk = undefined;
+
+    expect(() => {
+      get({ pk, sk });
+    }).toThrow(new Error('Primary Key is required, provide a pk and a sk.'));
+  })
+
+  it('returns an item for the provided primary key', async () => {
+    const { get } = baseRepository('test-tk_contracts_api');
+    const { item, docItem } = await populateItem();
+
+    const { Item } = await get(item);
+    expect(Item).toMatchObject(item);
+    
+    await deleteItem(docItem);
   })
 })
