@@ -5,7 +5,8 @@ module.exports = {
     "plugin:jest/recommended"
   ],
   "rules": {
-    "strict": ["error", "global"]
+    "strict": ["error", "global"],
+    "semi": ["error", "always"]
   },
   "plugins": ["jest"]
 }
