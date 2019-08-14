@@ -20,7 +20,7 @@ describe('.create', () => {
     const contract = contractModel(contractAttributes);
     
     const response = contractRepository.create(contract);
-    expect(response.item).toMatchObject(contractAttributes);
+    expect(response).toMatchObject(contractAttributes);
   })
 
   it('generates a partition key', () => {
@@ -31,6 +31,6 @@ describe('.create', () => {
     const contract = contractModel(contractAttributes);
     
     const response = contractRepository.create(contract);
-    expect(response.item.pk).toBeDefined();
+    expect(response.pk).toBeDefined();
   })
 })

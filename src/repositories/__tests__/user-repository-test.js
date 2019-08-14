@@ -21,7 +21,7 @@ describe('.create', () => {
     const user = userModel(userAttributes);
     
     const response = userRepository.create(user);
-    expect(response.item).toMatchObject(userAttributes);
+    expect(response).toMatchObject(userAttributes);
   })
 
   it('generates a partition key', () => {
@@ -33,6 +33,6 @@ describe('.create', () => {
     const user = userModel(userAttributes);
     
     const response = userRepository.create(user);
-    expect(response.item.pk).toBeDefined();
+    expect(response.pk).toBeDefined();
   })
 })
