@@ -5,7 +5,6 @@ const contractRepository = require('../repositories/contract-repository');
 
 module.exports = (request) => {
   const { body, pathParams } = request;
-
   const contractBody = {
     amount: body.amount,
     userId: pathParams.userId
