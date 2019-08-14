@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const baseRepository = require('./base-repository');
 const userModelBuilder = require('../models/user-model');
@@ -28,7 +28,13 @@ module.exports = {
     const { get } = baseRepositoryInstance;
 
     return get(primaryKey)
-      .then(({ Item }) => userModelBuilder(Item));
+      .then(({ Item }) => {
+        if (!Item) {
+          return;
+        }
+        
+        return userModelBuilder(Item);
+      });
   },
   update: (userModel) => {
     const item = {

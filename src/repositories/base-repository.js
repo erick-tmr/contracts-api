@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { dynamoClient: { documentClient } } = require('contracts-api-db');
 

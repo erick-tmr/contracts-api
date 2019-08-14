@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const createUserCommand = require('../create-user-command');
 
@@ -19,7 +19,7 @@ it('validates the user attributes', () => {
   expect(validations).toEqual(
     expect.arrayContaining(['email is required.'])
   );
-})
+});
 
 describe('without errors', () => {
   it('returns success true', async () => {
@@ -33,7 +33,7 @@ describe('without errors', () => {
 
     const { success } = await createUserCommand(userAttributes, fakeRepository);
     expect(success).toBe(true);
-  })
+  });
 
   it('returns the created user in resource key', async () => {
     const userAttributes = {
@@ -46,5 +46,5 @@ describe('without errors', () => {
 
     const { resource } = await createUserCommand(userAttributes, fakeRepository);
     expect(resource).toMatchObject(userAttributes);
-  })
-})
+  });
+});

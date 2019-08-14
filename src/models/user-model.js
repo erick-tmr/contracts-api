@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const getAddress = (attributes) => {
   const addressAttributes = {
@@ -17,7 +17,7 @@ const getAddress = (attributes) => {
     ...addressAttributes,
     ...attributes.address
   };
-}
+};
 
 module.exports = (attributes) => ({
     firstName: attributes.firstName || '',

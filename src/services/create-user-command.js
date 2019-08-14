@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const userModel = require('../models/user-model');
 const userValidations = require('./create-user-attributes-validate');

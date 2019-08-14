@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const contractModel = require('../models/contract-model');
 const contractValidations = require('./create-contract-attributes-validate');
@@ -6,7 +6,7 @@ const contractValidations = require('./create-contract-attributes-validate');
 const userNonExistent = async (userId, userRepository) => {
   const user = await userRepository.find(userId);
 
-  return !!user;
+  return !user;
 };
 
 module.exports = async (attributes, contractRepository, userRepository) => {
@@ -34,4 +34,4 @@ module.exports = async (attributes, contractRepository, userRepository) => {
       console.log('error', error);
       throw error;
     });
-}
+};

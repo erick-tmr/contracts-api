@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const creteUserCommand = require('../services/create-user-command');
 const userRepository = require('../repositories/user-repository');

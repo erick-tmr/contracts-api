@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const contractModel = require('../contract-model');
 
@@ -12,7 +12,7 @@ it('defines its attributes correctly', () => {
     'amount',
     'status',
     'userId',
-    'approved'
+    'approvalState'
   ];
 
   expect(modelAttributes).toEqual(expect.arrayContaining(expectedKeys));

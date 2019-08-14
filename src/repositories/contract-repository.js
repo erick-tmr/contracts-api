@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const baseRepository = require('./base-repository');
 const contractModelBuilder = require('../models/contract-model');

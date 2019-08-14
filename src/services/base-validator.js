@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = (attributes, validator, validatableFields) => {
   const validations = validatableFields.map(

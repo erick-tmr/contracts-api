@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const baseValidator = require('./base-validator');
 
@@ -6,7 +6,7 @@ module.exports = (attributes) => {
   const validatableFields = [
     'status',
     'userId',
-    'approved',
+    'approvalState',
     'amount'
   ];
   const validator = (fieldName, value) => {
@@ -20,7 +20,7 @@ module.exports = (attributes) => {
         ];
 
         if (value && possibleValues.indexOf(value) === -1) {
-          errors.push("status must be one of 'created', 'receiving_documents', 'reviewed'.")
+          errors.push("status must be one of 'created', 'receiving_documents', 'reviewed'.");
         }
   
         if (value && (value !== 'created')) {
@@ -38,11 +38,11 @@ module.exports = (attributes) => {
   
         return errors;
       },
-      approved: () => {
+      approvalState: () => {
         const errors = [];
   
-        if (value && value !== false) {
-          errors.push('approved must be false.');
+        if (value && value !== 'analyzing') {
+          errors.push('approvalState must be analyzing.');
         }
   
         return errors;

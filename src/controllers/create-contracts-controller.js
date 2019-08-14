@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const creteContractCommand = require('../services/create-contract-command');
 const contractRepository = require('../repositories/contract-repository');

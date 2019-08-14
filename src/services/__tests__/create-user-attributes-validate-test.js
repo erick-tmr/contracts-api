@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const createUserAttributesValidate = require('../create-user-attributes-validate');
 
@@ -19,8 +19,8 @@ describe('user without firstName', () => {
     expect(validations).toEqual(
       expect.arrayContaining(['firstName is required.'])
     );
-  })
-})
+  });
+});
 
 describe('user without lastName', () => {
   it('returns an error', () => {
@@ -31,8 +31,8 @@ describe('user without lastName', () => {
     expect(validations).toEqual(
       expect.arrayContaining(['lastName is required.'])
     );
-  })
-})
+  });
+});
 
 describe('user without email', () => {
   it('returns an error', () => {
@@ -43,8 +43,8 @@ describe('user without email', () => {
     expect(validations).toEqual(
       expect.arrayContaining(['email is required.'])
     );
-  })
-})
+  });
+});
 
 describe('user without cpf', () => {
   it('returns an error', () => {
@@ -55,8 +55,8 @@ describe('user without cpf', () => {
     expect(validations).toEqual(
       expect.arrayContaining(['cpf is required.'])
     );
-  })
-})
+  });
+});
 
 it('validates all fields at the same time', () => {
   const userAttributes = { montlyIncome: 1000000 };
@@ -70,11 +70,11 @@ it('validates all fields at the same time', () => {
       'firstName is required.'
     ])
   );
-})
+});
 
 describe('with all fields correct', () => {
   it('does not return errors', () => {
     const validations = createUserAttributesValidate(baseUserAttributes);
     expect(validations).toHaveLength(0);
-  })
-})
+  });
+});

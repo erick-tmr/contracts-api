@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const userRepository = require('../user-repository');
 const userModel = require('../../models/user-model');
@@ -9,7 +9,7 @@ jest.mock('../base-repository', () => () => ({
 
 it('returns an object with create method', () => {
   expect(userRepository).toHaveProperty('create');
-})
+});
 
 describe('.create', () => {
   it('creates an user', () => {
@@ -22,7 +22,7 @@ describe('.create', () => {
     
     const response = userRepository.create(user);
     expect(response).toMatchObject(userAttributes);
-  })
+  });
 
   it('generates a partition key', () => {
     const userAttributes = {
@@ -34,5 +34,5 @@ describe('.create', () => {
     
     const response = userRepository.create(user);
     expect(response.pk).toBeDefined();
-  })
-})
+  });
+});
