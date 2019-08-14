@@ -3,9 +3,19 @@
 const contractModel = require('../models/contract-model');
 const contractValidations = require('./create-contract-attributes-validate');
 
-module.exports = (attributes, repository) => {
+const userNonExistent = async (userId, userRepository) => {
+  const user = await userRepository.find(userId);
+
+  return !!user;
+};
+
+module.exports = async (attributes, contractRepository, userRepository) => {
   const validations = contractValidations(attributes);
   const newContract = contractModel(attributes);
+
+  if (await userNonExistent(newContract.userId, userRepository)) {
+    validations.push('user with userId not found.');
+  }
 
   if (validations.length !== 0) {
     return {
@@ -15,7 +25,7 @@ module.exports = (attributes, repository) => {
     };
   }
 
-  return repository.create(newContract)
+  return contractRepository.create(newContract)
     .then(() => ({
       success: true,
       resource: newContract
