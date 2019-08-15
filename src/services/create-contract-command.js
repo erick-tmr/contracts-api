@@ -35,9 +35,9 @@ module.exports = async (attributes, contractRepository, userRepository) => {
   const newContractUpdated = setContractStatus(newContract);
 
   return contractRepository.create(newContractUpdated)
-    .then(() => ({
+    .then((updatedModel) => ({
       success: true,
-      resource: newContractUpdated
+      resource: updatedModel
     }))
     .catch((error) => {
       console.log('error', error);
