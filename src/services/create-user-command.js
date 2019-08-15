@@ -16,9 +16,9 @@ module.exports = (attributes, repository) => {
   }
 
   return repository.create(newUser)
-    .then(() => ({
+    .then((createdUser) => ({
       success: true,
-      resource: newUser
+      resource: createdUser
     }))
     .catch((error) => {
       console.log('error', error);
