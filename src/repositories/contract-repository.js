@@ -9,12 +9,17 @@ const baseRepositoryInstance = baseRepository(tableName);
 
 module.exports = {
   create: (contractModel) => {
+    const id = uuidv4();
+
     const item = {
-      pk: uuidv4(),
+      pk: id,
       sk: 'Contract',
       data: contractModel.userId,
       filter: contractModel.status,
-      ...contractModel
+      ...{
+        ...contractModel,
+        id
+      }
     };
     const { create } = baseRepositoryInstance;
 
