@@ -4,7 +4,7 @@ const contractRepository = require('../contract-repository');
 const contractModel = require('../../models/contract-model');
 
 jest.mock('../base-repository', () => () => ({
-  create: params => params
+  create: async (params) => params
 }));
 
 it('returns an object with create method', () => {
@@ -12,25 +12,25 @@ it('returns an object with create method', () => {
 });
 
 describe('.create', () => {
-  it('creates a contract', () => {
+  it('creates a contract', async () => {
     const contractAttributes = {
       amount: 5000000,
       userId: 'some-uuid-v4'
     };
     const contract = contractModel(contractAttributes);
     
-    const response = contractRepository.create(contract);
+    const response = await contractRepository.create(contract);
     expect(response).toMatchObject(contractAttributes);
   });
 
-  it('generates a partition key', () => {
+  it('generates an id', async () => {
     const contractAttributes = {
       amount: 5000000,
       userId: 'some-uuid-v4'
     };
     const contract = contractModel(contractAttributes);
     
-    const response = contractRepository.create(contract);
-    expect(response.pk).toBeDefined();
+    const response = await contractRepository.create(contract);
+    expect(response.id).toBeDefined();
   });
 });

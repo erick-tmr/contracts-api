@@ -4,7 +4,7 @@ const userRepository = require('../user-repository');
 const userModel = require('../../models/user-model');
 
 jest.mock('../base-repository', () => () => ({
-  create: params => params
+  create: async (params) => params
 }));
 
 it('returns an object with create method', () => {
@@ -12,7 +12,7 @@ it('returns an object with create method', () => {
 });
 
 describe('.create', () => {
-  it('creates an user', () => {
+  it('creates an user', async () => {
     const userAttributes = {
       firstName: 'My',
       lastName: 'User',
@@ -20,11 +20,11 @@ describe('.create', () => {
     };
     const user = userModel(userAttributes);
     
-    const response = userRepository.create(user);
+    const response = await userRepository.create(user);
     expect(response).toMatchObject(userAttributes);
   });
 
-  it('generates a partition key', () => {
+  it('generates an id', async () => {
     const userAttributes = {
       firstName: 'My',
       lastName: 'User',
@@ -32,7 +32,7 @@ describe('.create', () => {
     };
     const user = userModel(userAttributes);
     
-    const response = userRepository.create(user);
-    expect(response.pk).toBeDefined();
+    const response = await userRepository.create(user);
+    expect(response.id).toBeDefined();
   });
 });
