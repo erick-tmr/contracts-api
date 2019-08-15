@@ -12,7 +12,8 @@ it('defines its attributes correctly', () => {
     'amount',
     'status',
     'userId',
-    'approvalState'
+    'approvalState',
+    'userSnapshot'
   ];
 
   expect(modelAttributes).toEqual(expect.arrayContaining(expectedKeys));
