@@ -10,20 +10,21 @@ const baseRepositoryInstance = baseRepository(tableName);
 module.exports = {
   create: (contractModel) => {
     const id = uuidv4();
-
+    const updatedModel = {
+      ...contractModel,
+      id
+    };
     const item = {
       pk: id,
       sk: 'Contract',
       data: contractModel.userId,
       filter: contractModel.status,
-      ...{
-        ...contractModel,
-        id
-      }
+      ...updatedModel
     };
     const { create } = baseRepositoryInstance;
 
-    return create(item);
+    return create(item)
+      .then(() => updatedModel);
   },
   list: () => {
     const conditionExpression = 'sk = :pk';

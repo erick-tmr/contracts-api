@@ -9,16 +9,22 @@ const baseRepositoryInstance = baseRepository(tableName);
 
 module.exports = {
   create: (userModel) => {
+    const id = uuidv4();
+    const updatedModel = {
+      ...userModel,
+      id
+    };
     const item = {
-      pk: uuidv4(),
+      pk: id,
       sk: 'User',
       data: userModel.email,
       filter: `${userModel.firstName}#${userModel.lastName}`,
-      ...userModel
+      ...updatedModel
     };
     const { create } = baseRepositoryInstance;
 
-    return create(item);
+    return create(item)
+      .then(() => updatedModel);
   },
   find: (userId) => {
     const primaryKey = {
