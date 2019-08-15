@@ -1,6 +1,7 @@
 'use strict';
 
 const contractModelBuilder = (attributes) => ({
+  id: attributes.pk || null,
   amount: attributes.amount || 0,
   status: attributes.status || 'created',
   userId: attributes.userId || null,

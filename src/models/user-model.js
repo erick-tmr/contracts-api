@@ -20,6 +20,7 @@ const getAddress = (attributes) => {
 };
 
 module.exports = (attributes) => ({
+    id: attributes.pk || null,
     firstName: attributes.firstName || '',
     lastName: attributes.lastName || '',
     cpf: attributes.cpf || '',

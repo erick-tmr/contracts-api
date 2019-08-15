@@ -16,7 +16,8 @@ it('defines its attributes correctly', () => {
     'montlyIncome',
     'dateOfBirth',
     'maritalStatus',
-    'address'
+    'address',
+    'id'
   ];
 
   expect(modelAttributes).toEqual(expect.arrayContaining(expectedKeys));
