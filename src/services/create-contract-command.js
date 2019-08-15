@@ -3,17 +3,23 @@
 const contractModel = require('../models/contract-model');
 const contractValidations = require('./create-contract-attributes-validate');
 
-const userNonExistent = async (userId, userRepository) => {
-  const user = await userRepository.find(userId);
+const setContractStatus = (model) => {
+  if (model.amount > 0) {
+    return {
+      ...model,
+      status: 'receiving_documents'
+    };
+  }
 
-  return !user;
+  return model;
 };
 
 module.exports = async (attributes, contractRepository, userRepository) => {
   const validations = contractValidations(attributes);
   const newContract = contractModel(attributes);
+  const contractUser = await userRepository.find(newContract.userId);
 
-  if (await userNonExistent(newContract.userId, userRepository)) {
+  if (!contractUser) {
     validations.push('user with userId not found.');
   }
 
@@ -25,10 +31,13 @@ module.exports = async (attributes, contractRepository, userRepository) => {
     };
   }
 
-  return contractRepository.create(newContract)
+  newContract.userSnapshot = contractUser;
+  const newContractUpdated = setContractStatus(newContract);
+
+  return contractRepository.create(newContractUpdated)
     .then(() => ({
       success: true,
-      resource: newContract
+      resource: newContractUpdated
     }))
     .catch((error) => {
       console.log('error', error);
