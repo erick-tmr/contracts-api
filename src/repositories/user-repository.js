@@ -2,23 +2,19 @@
 
 const baseRepository = require('./base-repository');
 const userModelBuilder = require('../models/user-model');
-const uuidv4 = require('uuid/v4');
+const withId = require('./with-id');
 
 const tableName = 'tk_contracts_api';
 const baseRepositoryInstance = baseRepository(tableName);
 
 module.exports = {
   create: (userModel) => {
-    const id = uuidv4();
-    const updatedModel = {
-      ...userModel,
-      id
-    };
+    const updatedModel = withId(userModel);
     const item = {
-      pk: id,
+      pk: updatedModel.id,
       sk: 'User',
-      data: userModel.email,
-      filter: `${userModel.firstName}#${userModel.lastName}`,
+      data: updatedModel.email,
+      filter: `${updatedModel.firstName}#${updatedModel.lastName}`,
       ...updatedModel
     };
     const { create } = baseRepositoryInstance;
