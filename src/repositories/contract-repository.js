@@ -22,6 +22,22 @@ module.exports = {
     return create(item)
       .then(() => updatedModel);
   },
+  find: (contractId) => {
+    const primaryKey = {
+      pk: contractId,
+      sk: 'Contract'
+    };
+    const { get } = baseRepositoryInstance;
+
+    return get(primaryKey)
+      .then(({ Item }) => {
+        if (!Item) {
+          return;
+        }
+        
+        return contractModelBuilder(Item);
+      });
+  },
   list: () => {
     const conditionExpression = 'sk = :pk';
     const expressionValues = {
