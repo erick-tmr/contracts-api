@@ -11,6 +11,9 @@ api.post('/users', createUsersController);
 const createContractsController = require('./src/controllers/create-contracts-controller');
 api.post('/users/{userId}/contracts', createContractsController);
 
+const createDocumentsController = require('./src/controllers/create-documents-controller');
+api.post('/contracts/{contractId}/documents', createDocumentsController);
+
 // const updateUsersController = require('./src/controllers/update-users-controller');
 // api.put('/users/{userId}', updateUsersController);
 
