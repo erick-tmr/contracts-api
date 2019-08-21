@@ -23,4 +23,7 @@ api.get('/users/{userId}/contracts', indexUserContractsController);
 const indexContractDocumentsController = require('./src/controllers/index-contract-documents-controller');
 api.get('/contracts/{contractId}/documents', indexContractDocumentsController);
 
+const updateContractsController = require('./src/controllers/update-contracts-controller');
+api.put('/contracts/{contractId}', updateContractsController);
+
 module.exports = api;
