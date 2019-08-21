@@ -117,7 +117,7 @@ Response format:
     "userId": "uuid",
     "approvalState": "text",
     "userSnapshot": {
-      ...user
+      "...ofTypeUser"
     }
   }
 }
@@ -142,7 +142,7 @@ Response format:
       "userId": "uuid",
       "approvalState": "text",
       "userSnapshot": {
-        ...user
+        "...ofTypeUser"
       }
     }
   ],
@@ -177,7 +177,7 @@ Response format:
     "userId": "uuid",
     "approvalState": "text",
     "userSnapshot": {
-      ...user
+      "...ofTypeUser"
     }
   }
 }
