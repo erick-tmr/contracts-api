@@ -12,7 +12,8 @@ module.exports = async (attributes, documentRepository, contractRepository) => {
     validations.push('contract with contractId not found.');
   }
 
-  const contractWithWrongStatus = documentContract && documentContract.status !== 'receiving_documents';
+  const approvedToChangeStates = ['receiving_documents', 'to_be_approved'];
+  const contractWithWrongStatus = documentContract && !approvedToChangeStates.includes(documentContract.status);
   if (contractWithWrongStatus) {
     validations.push("contract must be in 'receiving_documents' to accept documents.");
 
