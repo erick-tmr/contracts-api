@@ -65,7 +65,8 @@ module.exports = {
     };
     const { update } = baseRepositoryInstance;
 
-    return update(item);
+    return update(item)
+      .then(() => contractModel);
   },
   documents: (contractId) => {
     const conditionExpression = 'sk = :pk';
