@@ -2,6 +2,7 @@
 
 const baseRepository = require('./base-repository');
 const userModelBuilder = require('../models/user-model');
+const contractModelBuilder = require('../models/contract-model');
 const withId = require('./with-id');
 
 const tableName = 'tk_contracts_api';
@@ -40,7 +41,7 @@ module.exports = {
   },
   update: (userModel) => {
     const item = {
-      pk: userModel.pk,
+      pk: userModel.id,
       sk: 'User',
       data: userModel.email,
       filter: `${userModel.firstName}#${userModel.lastName}`,
@@ -81,7 +82,7 @@ module.exports = {
     return query(conditionExpression, expressionValues, indexName, expressionNames)
       .then(({ Items, Count }) => {
         return {
-          items: Items.map(attributes => userModelBuilder(attributes)),
+          items: Items.map(attributes => contractModelBuilder(attributes)),
           count: Count
         };
       });

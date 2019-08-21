@@ -2,6 +2,7 @@
 
 const baseRepository = require('./base-repository');
 const contractModelBuilder = require('../models/contract-model');
+const documentModelBuilder = require('../models/document-model');
 const withId = require('./with-id');
 
 const tableName = 'tk_contracts_api';
@@ -56,7 +57,7 @@ module.exports = {
   },
   update: (contractModel) => {
     const item = {
-      pk: contractModel.pk,
+      pk: contractModel.id,
       sk: 'Contract',
       data: contractModel.userId,
       filter: contractModel.status,
@@ -65,5 +66,21 @@ module.exports = {
     const { update } = baseRepositoryInstance;
 
     return update(item);
+  },
+  documents: (contractId) => {
+    const conditionExpression = 'sk = :pk';
+    const expressionValues = {
+      ':pk': contractId
+    };
+    const indexName = 'gsi_1';
+    const { query } = baseRepositoryInstance;
+
+    return query(conditionExpression, expressionValues, indexName)
+      .then(({ Items, Count }) => {
+        return {
+          items: Items.map(attributes => documentModelBuilder(attributes)),
+          count: Count
+        };
+      });
   }
 };
