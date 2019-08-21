@@ -80,10 +80,44 @@ describe('with contract inexistent', () => {
   });
 });
 
-describe('with not in status receiving_documents', () => {
+describe('with in status created', () => {
   const fakeContractRepository = {
     find: () => Promise.resolve({
       status: 'created'
+    }),
+    update: () => Promise.resolve(true)
+  };
+
+  it('returns an error', async () => {
+    const documentAttributes = {
+      type: 'cpf',
+      contractId: 'my-uuid',
+      publicUrl: 'myphoto.com/photo.jpg'
+    };
+  
+    const { validations, success } = await createDocumentCommand(documentAttributes, fakeDocumentRepository, fakeContractRepository);
+    expect(success).toBe(false);
+    expect(validations).toEqual(
+      expect.arrayContaining(["contract must be in 'receiving_documents' to accept documents."])
+    );
+  });
+
+  it('returns success false', async () => {
+    const documentAttributes = {
+      type: 'cpf',
+      contractId: 'my-uuid',
+      publicUrl: 'myphoto.com/photo.jpg'
+    };
+
+    const { success } = await createDocumentCommand(documentAttributes, fakeDocumentRepository, fakeContractRepository);
+    expect(success).toBe(false);
+  });
+});
+
+describe('with in status analyzed', () => {
+  const fakeContractRepository = {
+    find: () => Promise.resolve({
+      status: 'analyzed'
     }),
     update: () => Promise.resolve(true)
   };
