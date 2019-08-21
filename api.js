@@ -14,10 +14,13 @@ api.post('/users/{userId}/contracts', createContractsController);
 const createDocumentsController = require('./src/controllers/create-documents-controller');
 api.post('/contracts/{contractId}/documents', createDocumentsController);
 
-// const updateUsersController = require('./src/controllers/update-users-controller');
-// api.put('/users/{userId}', updateUsersController);
+const indexUsersController = require('./src/controllers/index-users-controller');
+api.get('/users', indexUsersController);
 
-// const updateContractsController = require('./src/controllers/update-contracts-controller');
-// api.put('/contracts/{contractId}', updateContractsController);
+const indexUserContractsController = require('./src/controllers/index-user-contracts-controller');
+api.get('/users/{userId}/contracts', indexUserContractsController);
+
+const indexContractDocumentsController = require('./src/controllers/index-contract-documents-controller');
+api.get('/contracts/{contractId}/documents', indexContractDocumentsController);
 
 module.exports = api;
