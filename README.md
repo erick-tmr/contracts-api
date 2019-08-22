@@ -5,6 +5,9 @@ An API to handle contracts from home equity loans.
 This project uses [Claudia.JS](https://claudiajs.com/ "Claudia.JS's Homepage") to deploy to AWS.
 Configure it and run the script `npm run deploy` to deploy or `claudia create` to deploy first time.
 
+It is necessary to configure an `env.json` file to set the Lambdas environment variables.
+The only required variable is the "NODE_ENV" to route the database endpoint to the correct value.
+
 ## URL
 This project is live in https://479p120d33.execute-api.sa-east-1.amazonaws.com/latest/.
 
