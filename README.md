@@ -1,6 +1,8 @@
 # contracts-api
 An API to handle contracts from home equity loans.
 
+This is a proposed solution to this [challenge](https://github.com/pontte/backend-challenge "Pontte's repository").
+
 ## Tools
 This project uses [Claudia.JS](https://claudiajs.com/ "Claudia.JS's Homepage") to deploy to AWS.
 Configure it and run the script `npm run deploy` to deploy or `claudia create` to deploy first time.
