@@ -12,7 +12,7 @@
     "node": "10.15.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.505.0",
+    "aws-sdk": "^2.814.0",
     "claudia-api-builder": "^4.1.2",
     "contracts-api-db": "file:db",
     "uuid": "^3.3.2"
